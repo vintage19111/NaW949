@@ -230,17 +230,17 @@ svg * {
   grid-template-rows: repeat(12, 1fr);
   max-width: 800px;
   grid-template-areas:
-    "exit1-1 assistant-director1 assistant-director1 accounting assistant-director2 conference-room cab-staff_1-1 cab-104 exit1-2 . ."
-    "corridor11 corridor12 corridor13 corridor14 corridor15 corridor16 corridor17 corridor18 corridor19 . ."
-    "cab-staff_1-2 wc-w-top1 chancellery chancellery Chill_1-1 Chill_1-1 cab-105 wc-m-top1 corridor110 fake_corridor1 fake_corridor1"
-    ". . . . . . . . corridor111 dressing-room eat-room"
-    ". . . . . . . . corridor112 dressing-room eat-room"
-    ". . . . . . . . corridor113 dressing-room eat-room"
-    ". . . . . . . . corridor114 dressing-room eat-room"
-    ". . . . . . . . corridor115 corridor-to-eat eat-room"
-    "hospital wc-w-bot1 cab-110 cab-117 cab-117 cab-111 cab-122 wc-m-bot1 corridor1165 fake_corridor2 fake_corridor2"
-    "corridor116 corridor117 corridor118 corridor119 corridor120 corridor121 corridor122 corridor123 corridor124 . ."
-    "exit1-3 cab-109 cab-108 cab-108 cab-107 cab-107 cab-106 cab-106 exit1-4 . .";
+    "exit1-1 assistant-director1 assistant-director1 accounting assistant-director2 conference-room conference-room cab-staff_1-1 cab-104 exit1-2 . ."
+    "corridor11 corridor12 corridor13 corridor14 corridor15 corridor16 corridor17 corridor17 corridor18 corridor19 . ."
+    "cab-staff_1-2 wc-w-top1 chancellery chancellery Chill_1-1 Chill_1-1 cab-105 cab-105 wc-m-top1 corridor110 fake_corridor1 fake_corridor1"
+    ". . . . . . . . . corridor111 dressing-room eat-room"
+    ". . . . . . . . . corridor112 dressing-room eat-room"
+    ". . . . . . . . . corridor113 dressing-room eat-room"
+    ". . . . . . . . . corridor114 dressing-room eat-room"
+    ". . . . . . . . . corridor115 corridor-to-eat eat-room"
+    "hospital wc-w-bot1 cab-110 cab-110 cab-117 cab-117 cab-111 cab-122 wc-m-bot1 corridor1165 fake_corridor2 fake_corridor2"
+    "corridor116 corridor117 corridor117 corridor118 corridor119 corridor120 corridor121 corridor122 corridor123 corridor124 . ."
+    "exit1-3 cab-109 cab-109 cab-108 cab-108 cab-107 cab-107 cab-106 cab-106 exit1-4 . .";
 }
 
 .corridor_right-border {
