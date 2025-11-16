@@ -226,8 +226,8 @@ svg * {
 
 .First_Floor-Content {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(11, 1fr);
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
   max-width: 800px;
   grid-template-areas:
     "exit1-1 assistant-director1 assistant-director1 accounting assistant-director2 conference-room cab-staff_1-1 cab-104 exit1-2 . ."
@@ -238,9 +238,9 @@ svg * {
     ". . . . . . . . corridor113 dressing-room eat-room"
     ". . . . . . . . corridor114 dressing-room eat-room"
     ". . . . . . . . corridor115 corridor-to-eat eat-room"
-    "hospital wc-w-bot1 cab-110 cab-117 cab-123 cab-111 cab-122 wc-m-bot1 corridor1165 fake_corridor2 fake_corridor2"
+    "hospital wc-w-bot1 cab-110 cab-117 cab-117 cab-111 cab-122 wc-m-bot1 corridor1165 fake_corridor2 fake_corridor2"
     "corridor116 corridor117 corridor118 corridor119 corridor120 corridor121 corridor122 corridor123 corridor124 . ."
-    "exit1-3 cab-109 cab-109 cab-108 cab-108 cab-107 cab-106 cab-106 exit1-4 . .";
+    "exit1-3 cab-109 cab-108 cab-108 cab-107 cab-107 cab-106 cab-106 exit1-4 . .";
 }
 
 .corridor_right-border {
@@ -318,7 +318,7 @@ svg * {
   outline: 1px solid rgb(52, 85, 182);
   color: rgb(52, 85, 182);
   font-size: clamp(12px, 2vw, 16px);
-  padding: 10px;
+  padding: 5px;
 }
 
 .fake_corridor1{
@@ -404,8 +404,7 @@ svg * {
 /* Нижний ряд */
 .First_Floor-wc-w-bot1 { grid-area: wc-w-bot1; }
 .First_Floor-110 { grid-area: cab-110; }
-.First_Floor-117 { grid-area: cab-117; }
-.First_Floor-123 { grid-area: cab-123; }
+.First_Floor-stimul { grid-area: cab-117; }
 .First_Floor-111 { grid-area: cab-111; }
 .First_Floor-122 { grid-area: cab-122; }
 .First_Floor-wc-m-bot1 { grid-area: wc-m-bot1; }
