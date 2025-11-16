@@ -1,0 +1,917 @@
+/**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+a {
+  /* Убирает подчеркивание */
+  text-decoration: none;
+
+  /* Устанавливает цвет текста */
+  color: inherit;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure, fieldset):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
+  margin-block: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+
+  margin-block: 0;
+}
+
+/**
+  Упрощаем работу с изображениями и видео
+ */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  height: 100%;
+  /**
+    Убираем скачок интерфейса по горизонтали
+    при появлении / исчезновении скроллбара
+   */
+  scrollbar-gutter: stable;
+}
+
+/**
+  Плавный скролл
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+   */
+  line-height: 1.5;
+}
+
+/**
+  Нормализация высоты элемента ссылки при его инспектировании в DevTools
+ */
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+  Курсор-рука при наведении на элемент
+ */
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут fill со значением 'none' или начинается с 'url')
+ */
+:where([fill]:not([fill="none"], [fill^="url"])) {
+  fill: currentColor;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут stroke со значением 'none')
+ */
+:where([stroke]:not([stroke="none"], [stroke^="url"])) {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Приведение рамок таблиц в классический 'collapse' вид
+ */
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/** подключение шрифтов**/
+
+@font-face {
+  font-family: "Public Sans";
+  src: url(fonts/PublicSans-Bold.woff2) format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Public Sans";
+  src: url(fonts/PublicSans-Medium.woff2) format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Public Sans";
+  src: url(fonts/PublicSans-Regular.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/** объявление глобальных переменных**/
+
+:root {
+  --color-light-gray: #ededed;
+  --color-dark-blue: #243647;
+  --color-dark: #121a21;
+  --color-white: #fafafa;
+  --color-gray: #b3afaf;
+  --color-background: rgb(52, 85, 182);
+
+  --border-radius: 8px;
+
+  --font-family-base: "Public Sans", sans-serif;
+
+  --transition-duration: 0.2s;
+
+  --max-width-container: 1380px;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+a,
+button {
+  transition-duration: var(--transition-duration);
+}
+
+@media (hover: hover) {
+  a:hover {
+    color: var(--color-gray);
+  }
+}
+
+@media (hover: none) {
+  a:active {
+    color: black;
+  }
+}
+
+/** стлизация header **/
+
+header {
+  display: block;
+  margin: 0 auto;
+  max-width: var(--max-width-container);
+  padding-inline: 40px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.header_menu-start {
+  display: flex;
+  column-gap: 1rem;
+  align-items: center;
+}
+
+.header_logo img {
+  width: 3rem;
+  height: 3rem;
+}
+
+.header_menu-list {
+  display: flex;
+  column-gap: 2.25rem;
+  font-weight: 500;
+}
+
+.header_menu-list a {
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.header_menu-item {
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.header_button_theme {
+  border: 1px solid var(--color-dark);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius);
+  background-color: var(--color-light-gray);
+}
+
+/** стилизация бургер меню**/
+
+.burger-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+.burger-menu span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.burger-menu.active span:nth-child(1) {
+  transform: translateY(10.5px) rotate(45deg);
+}
+
+.burger-menu.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-menu.active span:nth-child(3) {
+  transform: translateY(-10.5px) rotate(-45deg);
+}
+
+.header-end {
+  color: rgb(52, 85, 182);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/*только бурер меню*/
+
+@media (max-width: 666px) {
+  header {
+    padding-inline: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .burger-menu {
+    display: flex;
+    order: 3;
+  }
+
+  .header_menu-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-white);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    padding-top: 80px;
+  }
+
+  .header_menu-nav.active {
+    transform: translateX(0);
+  }
+
+  .header_menu-list {
+    flex-direction: column;
+    column-gap: 0;
+    row-gap: 0;
+    align-items: flex-end;
+  }
+
+  .header_menu-item {
+    width: 100%;
+    height: auto;
+    text-align: right;
+    padding: 20px;
+    border-bottom: 1px solid var(--color-light-gray);
+  }
+
+  .header_menu-item a {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 18px;
+  }
+
+  .header_menu-end {
+    order: 2;
+  }
+
+  .header_menu-start {
+    order: 1;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  .header_menu-end {
+    margin-left: auto;
+    margin-right: 14px;
+  }
+
+  .header-content {
+    margin-top: 8px;
+  }
+}
+
+/*стилизация main*/
+
+main {
+  height: max-content;
+  display: block;
+  margin: 0 auto;
+  max-width: var(--max-width-container);
+  padding-inline: 40px;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 30px 0 30px 0;
+}
+
+.floor-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.floor-navigation {
+  display: flex;
+  width: max-content;
+  position: absolute;
+  top: 40%;
+  left: 35%;
+  transform: translateX(-50%);
+  width: clamp(150px, 40vw, 400px);
+  z-index: 3;
+}
+
+.floor-buttons {
+  width: 3rem;
+  height: fit-content;
+  background: var(--color-background);
+  color: #a0a4ad;
+  padding: 0.1428571429rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3571428571rem;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  position: relative;
+  pointer-events: auto;
+  left: 0;
+  border-radius: 1.4285714286rem;
+}
+
+.floor-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  color: var(--color-dark);
+  font-size: 1.4rem;
+  line-height: 1.4rem;
+  font-weight: 500;
+  padding: 0.5rem;
+  text-align: center;
+  z-index: 1;
+}
+
+@media (hover: hover) {
+  .floor-btn:hover {
+    background-color: #bed3f1;
+  }
+}
+
+@media (hover: none) {
+  a:active {
+    color: black;
+  }
+}
+
+/** адаптация main контента**/
+
+@media (max-width: 1024px) {
+  .floor-navigation {
+    left: 30%;
+  }
+}
+
+@media (max-width: 800px) {
+  .floor-navigation {
+    left: 25%;
+  }
+  .main-section {
+    margin: 15px 0 30px 0;
+  }
+  .floor-title {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .floor-buttons {
+    flex-direction: row;
+    width: fit-content;
+  }
+  .floor-navigation {
+    display: flex;
+    width: max-content;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 3;
+  }
+  .floor-title{
+    margin-top: 60px;
+  }
+
+
+}
+
+/**
+
+.search-menu input{
+  width: 70%;
+  height: 2.5rem;
+}
+
+.search-menu{
+  display: flex;
+  justify-content: center;
+}
+
+**/
+
+/* стилизация footer*/
+
+footer {
+  background-color: var(--color-dark-blue);
+}
+
+.footer_content {
+  display: block;
+  margin: 0 auto;
+  max-width: var(--max-width-container);
+  padding-inline: 40px;
+}
+
+.footer_main-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+}
+
+.footer-links_wrapper {
+  margin-bottom: 12px;
+}
+
+.footer_links-title h3 {
+  color: var(--color-white);
+  font-weight: 700;
+  margin: 12px 0 12px 0;
+}
+
+.footer_text {
+  color: var(--color-gray);
+  margin-top: 6px;
+}
+
+@media (hover: hover) {
+  .footer_text:hover {
+    color: #bed3f1;
+  }
+}
+
+@media (hover: none) {
+  .footer_text:active {
+    color: black;
+  }
+}
+
+.footer_end {
+  margin-top: 18px;
+  margin-bottom: 12px;
+}
+
+.footer_copyright {
+  padding-bottom: 12px;
+}
+
+/*адаптация footer*/
+
+@media (max-width: 666px) {
+  .footer_main-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    row-gap: 6px;
+  }
+  .footer_links-title h3 {
+    margin: 12px 0 3px 0;
+  }
+}
+
+/*3 этаж*/
+
+.horizontally_cabinet {
+  height: clamp(2rem, 6vw, 3rem);
+}
+
+.cabinet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dbeaff;
+  outline: 1px solid rgb(52, 85, 182);
+  color: rgb(52, 85, 182);
+  font-size: clamp(12px, 2.5vw, 18px);
+}
+
+.Third_Floor-Container {
+  display: flex;
+  justify-content: center;
+  font-weight: 400;
+}
+
+.Third_Floor-Content {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(11, 1fr);
+  max-width: 800px;
+  grid-template-areas:
+    ". exit3-1 cab-302 cab-302 cab-302 cab-303 cab-303 cab-staff cab-304 exit3-2"
+    ". corridor31 corridor32 corridor33 corridor34 corridor35 corridor36 corridor37 corridor38 corridor39"
+    ". corridor395 wc-w-top3 cab-301 cab-300 cab-305 cab-305 cab-305 wc-m-top3 cab-318"
+    "cab-316 corridor310 . . . . . . . cab-318"
+    "cab-315 corridor311 . . . . . . . cab-320"
+    "cab-314 corridor312 . . . . . . . cab-320"
+    "cab-313 corridor313 . . . . . . . cab-319"
+    "cab-312 corridor314 . . . . . . . cab-319"
+    ". corridor315 wc-w-bot3 cab-310 cab-317 cab-323 cab-311 cab-322 wc-m-bot3 cab-319"
+    ". corridor316 corridor317 corridor318 corridor319 corridor320 corridor321 corridor322 corridor323 corridor324"
+    ". exit3-3 cab-309 cab-308 cab-308 cab-307 cab-307 cab-306 cab-306 exit3-4";
+}
+
+.corridor_right-border {
+  border-right: 1px solid rgb(52, 85, 182);
+}
+
+.corridor_left-border {
+  border-left: 1px solid rgb(52, 85, 182);
+}
+
+.exit img {
+  width: clamp(25px, 2vw, 50px);
+  height: clamp(25px, 2vw, 50px);
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.wc img {
+  width: clamp(30px, 4vw, 50px);
+  height: clamp(30px, 4vw, 50px);
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (hover: hover) {
+  .cabinet:hover {
+    background-color: #bed3f1;
+  }
+}
+
+@media (hover: none) {
+  .cabinet:active {
+    background-color: #dbeaff;
+  }
+}
+
+/* Верхний ряд */
+.Third_Floor-302 {
+  grid-area: cab-302;
+}
+
+.Third_Floor-303 {
+  grid-area: cab-303;
+}
+
+.Third_Floor-staff {
+  grid-area: cab-staff;
+}
+
+.Third_Floor-304 {
+  grid-area: cab-304;
+}
+
+.Third_Floor-wc-w-top {
+  grid-area: wc-w-top3;
+}
+
+.Third_Floor-301 {
+  grid-area: cab-301;
+}
+
+.Third_Floor-300 {
+  grid-area: cab-300;
+}
+
+.Third_Floor-305 {
+  grid-area: cab-305;
+}
+
+.Third_Floor-wc-m-top {
+  grid-area: wc-m-top3;
+}
+
+/* Вертикальные кабинеты (R4-R8) */
+.Third_Floor-316 {
+  grid-area: cab-316;
+}
+.Third_Floor-315 {
+  grid-area: cab-315;
+}
+.Third_Floor-314 {
+  grid-area: cab-314;
+}
+.Third_Floor-313 {
+  grid-area: cab-313;
+}
+.Third_Floor-312 {
+  grid-area: cab-312;
+}
+
+.Third_Floor-318 {
+  grid-area: cab-318;
+}
+.Third_Floor-320 {
+  grid-area: cab-320;
+}
+.Third_Floor-319 {
+  grid-area: cab-319;
+}
+
+.Third_Floor-wc-w-bot {
+  grid-area: wc-w-bot3;
+}
+
+.Third_Floor-310 {
+  grid-area: cab-310;
+}
+
+.Third_Floor-317 {
+  grid-area: cab-317;
+}
+
+.Third_Floor-323 {
+  grid-area: cab-323;
+}
+
+.Third_Floor-311 {
+  grid-area: cab-311;
+}
+
+.Third_Floor-322 {
+  grid-area: cab-322;
+}
+
+.Third_Floor-wc-m-bot {
+  grid-area: wc-m-bot3;
+}
+
+.Third_Floor-309 {
+  grid-area: cab-309;
+}
+
+.Third_Floor-308 {
+  grid-area: cab-308;
+}
+
+.Third_Floor-307 {
+  grid-area: cab-307;
+}
+
+.Third_Floor-306 {
+  grid-area: cab-306;
+}
+
+.Third_Floor-exit3-1 {
+  grid-area: exit3-1;
+}
+
+.Third_Floor-exit3-2 {
+  grid-area: exit3-2;
+}
+.Third_Floor-exit3-3 {
+  grid-area: exit3-3;
+}
+.Third_Floor-exit3-4 {
+  grid-area: exit3-4;
+}
+
+.corridor31 {
+  grid-area: corridor31;
+}
+.corridor32 {
+  grid-area: corridor32;
+}
+.corridor33 {
+  grid-area: corridor33;
+}
+.corridor34 {
+  grid-area: corridor34;
+}
+.corridor35 {
+  grid-area: corridor35;
+}
+.corridor36 {
+  grid-area: corridor36;
+}
+.corridor37 {
+  grid-area: corridor37;
+}
+.corridor38 {
+  grid-area: corridor38;
+}
+.corridor39 {
+  grid-area: corridor39;
+}
+.corridor395 {
+  grid-area: corridor395;
+}
+.corridor310 {
+  grid-area: corridor310;
+}
+.corridor311 {
+  grid-area: corridor311;
+}
+.corridor312 {
+  grid-area: corridor312;
+}
+.corridor313 {
+  grid-area: corridor313;
+}
+.corridor314 {
+  grid-area: corridor314;
+}
+.corridor315 {
+  grid-area: corridor315;
+}
+.corridor316 {
+  grid-area: corridor316;
+}
+.corridor317 {
+  grid-area: corridor317;
+}
+.corridor318 {
+  grid-area: corridor318;
+}
+.corridor319 {
+  grid-area: corridor319;
+}
+.corridor320 {
+  grid-area: corridor320;
+}
+.corridor321 {
+  grid-area: corridor321;
+}
+.corridor322 {
+  grid-area: corridor322;
+}
+.corridor323 {
+  grid-area: corridor323;
+}
+.corridor324 {
+  grid-area: corridor324;
+}

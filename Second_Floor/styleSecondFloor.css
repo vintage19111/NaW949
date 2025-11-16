@@ -1,0 +1,492 @@
+/**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+a {
+  /* Убирает подчеркивание */
+  text-decoration: none;
+
+  /* Устанавливает цвет текста */
+  color: inherit;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure, fieldset):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
+  margin-block: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+
+  margin-block: 0;
+}
+
+/**
+  Упрощаем работу с изображениями и видео
+ */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  height: 100%;
+  /**
+    Убираем скачок интерфейса по горизонтали
+    при появлении / исчезновении скроллбара
+   */
+  scrollbar-gutter: stable;
+}
+
+/**
+  Плавный скролл
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+   */
+  line-height: 1.5;
+}
+
+/**
+  Нормализация высоты элемента ссылки при его инспектировании в DevTools
+ */
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+  Курсор-рука при наведении на элемент
+ */
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут fill со значением 'none' или начинается с 'url')
+ */
+:where([fill]:not([fill="none"], [fill^="url"])) {
+  fill: currentColor;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут stroke со значением 'none')
+ */
+:where([stroke]:not([stroke="none"], [stroke^="url"])) {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Приведение рамок таблиц в классический 'collapse' вид
+ */
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*start*/
+
+.header {
+  text-align: center;
+}
+
+.horizontally_cabinet {
+  height: clamp(2rem, 6vw, 3rem);
+}
+
+.cabinet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dbeaff;
+  outline: 1px solid rgb(52, 85, 182);
+  color: rgb(52, 85, 182);
+  font-size: clamp(12px, 2.5vw, 18px);
+}
+
+
+
+.Second_Floor-Container {
+  display: flex;
+  justify-content: center;
+}
+
+.Second_Floor-Content {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(11, 1fr);
+  max-width: 800px;
+  grid-template-areas:
+  ". exit2-1 cab-202 cab-202 cab-202 cab-203 cab-203 cab-203 cab-staff cab-204 exit2-2 ."
+  ". corridor21 corridor22 corridor23 corridor24 corridor25 corridor26 corridor27 corridor28 corridor29 corridor29 ."
+  ". corridor295 wc-w-top2 cab-201 cab-201 chill2-1 chill2-1 cab-205 cab-205 wc-m-top2 active_hall active_hall"
+  "cab-216 corridor210 . . . . . . . . active_hall active_hall"
+  "cab-215 corridor211 . . . . . . . . active_hall active_hall"
+  "cab-214 corridor212 . . . . . . . . gym gym"
+  "cab-213 corridor213 . . . . . . . . gym gym"
+  "cab-212 corridor214 . . . . . . . . gym gym"
+  ". corridor215 wc-w-bot2 cab-210 cab-210 chill2-2 chill2-2 cab-211 cab-211 wc-m-bot2 gym gym"
+  ". corridor216 corridor217 corridor218 corridor219 corridor220 corridor221 corridor222 corridor223 corridor224 corridor224 ."
+  ". exit2-3 cab-209 cab-209 cab-208 cab-208 cab-207 cab-207 cab-206 cab-206 exit2-4 .";
+
+}
+
+.corridor_right-border {
+  border-right: 1px solid rgb(52, 85, 182);
+}
+
+.corridor_left-border {
+  border-left: 1px solid rgb(52, 85, 182);
+}
+
+.exit img {
+  width: clamp(25px, 2vw, 50px);
+  height: clamp(25px, 2vw, 50px);
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.wc img {
+  width: clamp(30px, 4vw, 50px);
+  height: clamp(30px, 4vw, 50px);
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.Second_Floor-gym img{
+  width: clamp(40px, 4vw, 70px);
+  height: clamp(40px, 4vw, 70px);
+}
+
+.Second_Floor-active_hall img{
+  width: clamp(40px, 4vw, 70px);
+  height: clamp(40px, 4vw, 70px);
+}
+
+.chill_zone img{
+  width: clamp(40px, 4vw, 70px);
+  height: clamp(40px, 4vw, 70px);
+}
+
+@media (hover: hover) {
+  .cabinet:hover {
+    background-color: #bed3f1;
+  }
+}
+
+@media (hover: none) {
+  .cabinet:active {
+    background-color: #dbeaff;
+  }
+}
+
+/* Верхний ряд */
+.Second_Floor-202 {
+  grid-area: cab-202;
+}
+
+.Second_Floor-203 {
+  grid-area: cab-203;
+}
+
+.Second_Floor-staff {
+  grid-area: cab-staff;
+}
+
+.Second_Floor-204 {
+  grid-area: cab-204;
+}
+
+.Second_Floor-wc-w-top {
+  grid-area: wc-w-top2;
+}
+
+.Second_Floor-201 {
+  grid-area: cab-201;
+}
+
+.Chill_2-1 {
+  grid-area: chill2-1;
+}
+
+.Second_Floor-205 {
+  grid-area: cab-205;
+}
+
+.Second_Floor-wc-m-top {
+  grid-area: wc-m-top2;
+}
+
+.Second_Floor-216 {
+  grid-area: cab-216;
+}
+.Second_Floor-215 {
+  grid-area: cab-215;
+}
+.Second_Floor-214 {
+  grid-area: cab-214;
+}
+.Second_Floor-213 {
+  grid-area: cab-213;
+}
+.Second_Floor-212 {
+  grid-area: cab-212;
+}
+
+.Second_Floor-active_hall{
+    grid-area: active_hall;
+}
+
+.Second_Floor-gym{
+    grid-area: gym;
+}
+
+.Second_Floor-wc-w-bot {
+  grid-area: wc-w-bot2;
+}
+
+.Second_Floor-210 {
+  grid-area: cab-210;
+}
+
+.Second_Floor-217 {
+  grid-area: cab-217;
+}
+
+.Second_Floor-223 {
+  grid-area: cab-223;
+}
+
+.Second_Floor-211 {
+  grid-area: cab-211;
+}
+
+.Chill_2-2 {
+  grid-area: chill2-2;
+}
+
+.Second_Floor-wc-m-bot {
+  grid-area: wc-m-bot2;
+}
+
+.Second_Floor-209 {
+  grid-area: cab-209;
+}
+
+.Second_Floor-208 {
+  grid-area: cab-208;
+}
+
+.Second_Floor-207 {
+  grid-area: cab-207;
+}
+
+.Second_Floor-206 {
+  grid-area: cab-206;
+}
+
+.Second_Floor-exit2-1 {
+  grid-area: exit2-1;
+}
+
+.Second_Floor-exit2-2 {
+  grid-area: exit2-2;
+}
+.Second_Floor-exit2-3 {
+  grid-area: exit2-3;
+}
+.Second_Floor-exit2-4 {
+  grid-area: exit2-4;
+}
+
+/* Коридоры */
+.corridor21 {
+  grid-area: corridor21;
+}
+.corridor22 {
+  grid-area: corridor22;
+}
+.corridor23 {
+  grid-area: corridor23;
+}
+.corridor24 {
+  grid-area: corridor24;
+}
+.corridor25 {
+  grid-area: corridor25;
+}
+.corridor26 {
+  grid-area: corridor26;
+}
+.corridor27 {
+  grid-area: corridor27;
+}
+.corridor28 {
+  grid-area: corridor28;
+}
+.corridor29 {
+  grid-area: corridor29;
+}
+.corridor295 {
+  grid-area: corridor295;
+}
+.corridor210 {
+  grid-area: corridor210;
+}
+.corridor211 {
+  grid-area: corridor211;
+}
+.corridor212 {
+  grid-area: corridor212;
+}
+.corridor213 {
+  grid-area: corridor213;
+}
+.corridor214 {
+  grid-area: corridor214;
+}
+.corridor215 {
+  grid-area: corridor215;
+}
+.corridor216 {
+  grid-area: corridor216;
+}
+.corridor217 {
+  grid-area: corridor217;
+}
+.corridor218 {
+  grid-area: corridor218;
+}
+.corridor219 {
+  grid-area: corridor219;
+}
+.corridor220 {
+  grid-area: corridor220;
+}
+.corridor221 {
+  grid-area: corridor221;
+}
+.corridor222 {
+  grid-area: corridor222;
+}
+.corridor223 {
+  grid-area: corridor223;
+}
+.corridor224 {
+  grid-area: corridor224;
+}
