@@ -469,7 +469,7 @@ main {
   display: flex;
   width: max-content;
   position: absolute;
-  top: 40%;
+  top: 45%;
   left: 35%;
   transform: translateX(-50%);
   width: clamp(150px, 40vw, 400px);
@@ -641,7 +641,7 @@ footer {
   }
 }
 
-/*3 этаж*/
+/*1, 2, 3 этаж*/
 
 .horizontally_cabinet {
   height: clamp(2rem, 6vw, 3rem);
@@ -756,6 +756,108 @@ footer {
 .chill_zone img{
   width: clamp(40px, 4vw, 70px);
   height: clamp(40px, 4vw, 70px);
+}
+
+
+
+.First_Floor-Container {
+  display: flex;
+  justify-content: center;
+}
+
+.First_Floor-Content {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(11, 1fr);
+  max-width: 800px;
+  grid-template-areas:
+    "exit1-1 assistant-director1 assistant-director1 accounting assistant-director2 conference-room conference-room cab-staff_1-1 cab-104 exit1-2 . ."
+    "corridor11 corridor12 corridor13 corridor14 corridor15 corridor16 corridor17 corridor17 corridor18 corridor19 . ."
+    "cab-staff_1-2 wc-w-top1 chancellery chancellery Chill_1-1 Chill_1-1 cab-105 cab-105 wc-m-top1 corridor110 fake_corridor1 fake_corridor1"
+    ". . . . . . . . . corridor111 dressing-room eat-room"
+    ". . . . . . . . . corridor112 dressing-room eat-room"
+    ". . . . . . . . . corridor113 dressing-room eat-room"
+    ". . . . . . . . . corridor114 dressing-room eat-room"
+    ". . . . . . . . . corridor115 corridor-to-eat eat-room"
+    "hospital wc-w-bot1 cab-110 cab-110 cab-117 cab-117 cab-111 cab-122 wc-m-bot1 corridor1165 fake_corridor2 fake_corridor2"
+    "corridor116 corridor117 corridor117 corridor118 corridor119 corridor120 corridor121 corridor122 corridor123 corridor124 . ."
+    "exit1-3 cab-109 cab-109 cab-108 cab-108 cab-107 cab-107 cab-106 cab-106 exit1-4 . .";
+}
+
+.eat-room img{
+  width: clamp(30px, 4vw, 60px);
+  height: clamp(30px, 4vw, 60px);
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.hospital img{
+  width: clamp(30px, 4vw, 40px);
+  height: clamp(30px, 4vw, 40px);
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.Chill_1-1 img{
+  width: clamp(30px, 4vw, 50px);
+  height: clamp(30px, 4vw, 50px);
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.Dressing_room{
+  border-right: 1px solid rgb(52, 85, 182);
+}
+
+.corridor-to-eat{
+  border-top: 1px solid rgb(52, 85, 182);
+}
+
+
+.dressing-room, .eat-room{
+  background-color:#dbeaff;
+  border-right: 1px solid rgb(52, 85, 182);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(52, 85, 182);
+  font-size: clamp(12px, 2vw, 16px);
+  padding: 5px;
+}
+
+.First_Floor-cabinet{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dbeaff;
+  outline: 1px solid rgb(52, 85, 182);
+  color: rgb(52, 85, 182);
+  font-size: clamp(12px, 2vw, 16px);
+  padding: 5px;
+}
+
+.fake_corridor1{
+  border-bottom: 1px solid rgb(52, 85, 182) ;
+}
+
+.fake_corridor2{
+  border-top: 1px solid rgb(52, 85, 182);
+}
+
+@media (hover: hover) {
+  .cabinet:hover {
+    background-color: #bed3f1;
+  }
+  .dressing-room:hover {
+    background-color: #bed3f1;
+  }
+  .eat-room:hover {
+    background-color: #bed3f1;
+  }
+
 }
 
 /* Верхний ряд */
@@ -1152,3 +1254,81 @@ footer {
 .corridor224 {
   grid-area: corridor224;
 }
+
+
+/* Верхний ряд */
+.First_Floor-exit1-1 { grid-area: exit1-1; }
+.First_Floor-assistant-director1 { grid-area: assistant-director1; }
+.First_Floor-accounting { grid-area: accounting; }
+.First_floor-assistant-director2{ grid-area: assistant-director2;}
+.First_Floor-conference-room{ grid-area: conference-room;}
+.First_Floor-staff_1-1 { grid-area: cab-staff_1-1; }
+.First_Floor-104 { grid-area: cab-104; }
+.First_Floor-exit1-2 { grid-area: exit1-2; }
+
+/* Верхний коридор */
+.corridor11 { grid-area: corridor11; }
+.corridor12 { grid-area: corridor12; }
+.corridor13 { grid-area: corridor13; }
+.corridor14 { grid-area: corridor14; }
+.corridor15 { grid-area: corridor15; }
+.corridor16 { grid-area: corridor16; }
+.corridor17 { grid-area: corridor17; }
+.corridor18 { grid-area: corridor18; }
+.corridor19 { grid-area: corridor19; }
+
+/* Левая вертикаль и верхние помещения */
+.First_Floor-staff_1-2{ grid-area: cab-staff_1-2;}
+.First_Floor-wc-w-top1 { grid-area: wc-w-top1; }
+.First_Floor-chancellery{ grid-area: chancellery;}
+.Chill_1-1{grid-area: Chill_1-1;}
+.First_Floor-105 { grid-area: cab-105; }
+.First_Floor-wc-m-top1 { grid-area: wc-m-top1; }
+.First_Floor-118 { grid-area: cab-118; }
+.First_Floor-120 { grid-area: cab-120; }
+.First_Floor-119 { grid-area: cab-119; }
+
+
+
+.corridor110 { grid-area: corridor110; }
+.fake_corridor1{ grid-area: fake_corridor1;}
+.corridor111 { grid-area: corridor111; }
+.dressing-room{ grid-area: dressing-room;}
+.eat-room{ grid-area: eat-room;}
+.corridor112 { grid-area: corridor112; }
+.corridor113 { grid-area: corridor113; }
+.corridor114 { grid-area: corridor114; }
+.corridor115 { grid-area: corridor115; }
+.corridor-to-eat{ grid-area: corridor-to-eat;}
+
+
+
+/* Нижний ряд */
+.First_Floor-wc-w-bot1 { grid-area: wc-w-bot1; }
+.First_Floor-110 { grid-area: cab-110; }
+.First_Floor-stimul { grid-area: cab-117; }
+.First_Floor-111 { grid-area: cab-111; }
+.First_Floor-122 { grid-area: cab-122; }
+.First_Floor-wc-m-bot1 { grid-area: wc-m-bot1; }
+.corridor1165{ grid-area: corridor1165;}
+.fake_corridor2{ grid-area: fake_corridor2;}
+
+/* Нижний коридор */
+.First_Floor-hospital { grid-area: hospital; }
+.corridor116 { grid-area: corridor116; }
+.corridor117 { grid-area: corridor117; }
+.corridor118 { grid-area: corridor118; }
+.corridor119 { grid-area: corridor119; }
+.corridor120 { grid-area: corridor120; }
+.corridor121 { grid-area: corridor121; }
+.corridor122 { grid-area: corridor122; }
+.corridor123 { grid-area: corridor123; }
+.corridor124 { grid-area: corridor124; }
+
+/* Нижняя линия с выходами */
+.First_Floor-exit1-3 { grid-area: exit1-3; }
+.First_Floor-109 { grid-area: cab-109; }
+.First_Floor-108 { grid-area: cab-108; }
+.First_Floor-107 { grid-area: cab-107; }
+.First_Floor-106 { grid-area: cab-106; }
+.First_Floor-exit1-4 { grid-area: exit1-4; }
