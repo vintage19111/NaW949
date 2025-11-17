@@ -1332,3 +1332,11 @@ footer {
 .First_Floor-107 { grid-area: cab-107; }
 .First_Floor-106 { grid-area: cab-106; }
 .First_Floor-exit1-4 { grid-area: exit1-4; }
+
+.hidden {
+  display: none;
+}
+
+.floor-btn.active {
+  background:  #dbeaff;
+}
