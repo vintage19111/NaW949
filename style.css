@@ -1340,3 +1340,39 @@ footer {
 .floor-btn.active {
   background:  #dbeaff;
 }
+
+
+/*Стилизация контактов*/
+
+.contact_container h1{
+  padding: 1.5rem 0 1.5rem 0;
+  text-align: center;
+}
+
+
+.main_contact-card{
+  border: 1px var(--color-dark-blue);
+}
+
+.contact_card{
+  background-color: #bed3f1;
+  margin-bottom: 2.5rem;
+  border-radius: var(--border-radius);
+  width: 60%;
+  height: 8rem;
+}
+.contact_card h3{
+  text-align: center;
+  padding-top: 8px;
+}
+
+.contact_list{
+  display: flex;
+  flex-direction: column;
+}
+
+.contact_item{
+  display: flex;
+  justify-content: center;
+}
+
