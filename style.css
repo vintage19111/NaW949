@@ -762,15 +762,25 @@ footer {
 
 
 .First_Floor-Container {
-  display: flex;
-  justify-content: center;
+  display: block;
+  overflow: auto; 
+  position: relative;
+  cursor: grab; 
+  -webkit-overflow-scrolling: touch; 
+}
+
+.First_Floor-Container::-webkit-scrollbar {
+  display: none;
 }
 
 .First_Floor-Content {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(11, 1fr);
-  max-width: 800px;
+  width: 800px;
+  min-height: 200px;
+  padding: 10px;
+  margin: 0 auto;
   grid-template-areas:
     "exit1-1 assistant-director1 assistant-director1 accounting assistant-director2 conference-room conference-room cab-staff_1-1 cab-104 exit1-2 . ."
     "corridor11 corridor12 corridor13 corridor14 corridor15 corridor16 corridor17 corridor17 corridor18 corridor19 . ."
