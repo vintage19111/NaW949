@@ -73,28 +73,33 @@ function getVisibleFloorContent() {
   return null;
 }
 
+
+function isMobileMapEnabled() {
+  return window.innerWidth <= 750;
+}
+
 document.addEventListener(
   "wheel",
-  (e) => {
+  e => {
+    if (!isMobileMapEnabled()) return;
+
     const content = getVisibleFloorContent();
     if (!content || !content.contains(e.target)) return;
 
+    // запрещаем дефолт только когда реально зумим
     if (!e.shiftKey) {
       e.preventDefault();
     }
 
-    // --- позиция курсора относительно карты ---
+    // --- позиция курсора ---
     const rect = content.getBoundingClientRect();
     const offsetX = ((e.clientX - rect.left) / rect.width) * 100;
     const offsetY = ((e.clientY - rect.top) / rect.height) * 100;
 
-    // --- ограничиваем область ---
     if (offsetX < 0 || offsetX > 100 || offsetY < 0 || offsetY > 100) return;
 
-    // --- устанавливаем origin ---
     content.style.transformOrigin = `${offsetX}% ${offsetY}%`;
 
-    // --- меняем scale ---
     const step = 0.12;
     if (e.deltaY < 0) {
       scale = Math.min(MAX_SCALE, scale + step);
@@ -117,4 +122,15 @@ document.querySelectorAll("[data-floor-button]").forEach((btn) => {
       content.style.transformOrigin = "center center";
     }
   });
+});
+
+window.addEventListener("resize", () => {
+  if (!isMobileMapEnabled()) {
+    scale = 1;
+    const content = getVisibleFloorContent();
+    if (content) {
+      content.style.transform = "scale(1)";
+      content.style.transformOrigin = "center center";
+    }
+  }
 });
