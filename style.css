@@ -871,6 +871,24 @@ footer {
 
 }
 
+@media (max-width: 750px) {
+    .First_Floor-Container, 
+    .Second_Floor-Container, 
+    .Third_Floor-Container {
+        overflow: hidden !important; 
+        touch-action: none; 
+        position: relative;
+        padding: 2px;
+    }
+
+    /* Контент, который мы будем трансформировать */
+    .floor-content {
+        transition: transform 0.1s ease-out;
+        transform-origin: 0 0; 
+        will-change: transform;
+    }
+}
+
 /* Верхний ряд */
 .Third_Floor-302 {
   grid-area: cab-302;
@@ -1392,7 +1410,6 @@ footer {
 }
 
 
-
 .write-me{
   margin-top: 1rem;
   width: 7rem;
@@ -1441,20 +1458,3 @@ footer {
   padding-bottom: 12px;
 }
 }
-
-.floor-content {
-  transform-origin: center center;
-  transition: transform 0.15s ease;
-}
-
-.floor {
-  overflow-x: auto;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.floor-content {
-  transform-origin: center center;
-  transition: transform 0.12s ease;
-}
-

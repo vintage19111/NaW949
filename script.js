@@ -1,136 +1,130 @@
-//бургер меню
 
 const burger = document.querySelector(".burger-menu");
 const nav = document.querySelector(".header_menu-nav");
 const body = document.body;
 
-burger.addEventListener("click", () => {
-  burger.classList.toggle("active");
-  nav.classList.toggle("active");
-  body.classList.toggle("menu-open");
-});
+if (burger) {
+    burger.addEventListener("click", () => {
+        burger.classList.toggle("active");
+        nav.classList.toggle("active");
+        body.classList.toggle("menu-open");
+    });
+}
 
 const menuLinks = document.querySelectorAll(".header_menu-item a");
 menuLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    burger.classList.remove("active");
-    nav.classList.remove("active");
-    body.classList.remove("menu-open");
-  });
-});
-
-//кнокпи переключения
-
-document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelectorAll(".floor-btn");
-  const title = document.querySelector(".floor-title");
-
-  const floorBlocks = document.querySelectorAll(".floor");
-
-  function showFloor(number) {
-    floorBlocks.forEach((block) => block.classList.add("hidden"));
-
-    document
-      .querySelector(`[data-floor-block="${number}"]`)
-      ?.classList.remove("hidden");
-
-    const titles = {
-      1: "Первый этаж",
-      2: "Второй этаж",
-      3: "Третий этаж",
-    };
-    title.textContent = titles[number];
-
-    buttons.forEach((btn) => btn.classList.remove("active"));
-    document
-      .querySelector(`.floor-btn[data-floor="${number}"]`)
-      .classList.add("active");
-  }
-
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const floor = btn.dataset.floor;
-      showFloor(floor);
+    link.addEventListener("click", () => {
+        burger.classList.remove("active");
+        nav.classList.remove("active");
+        body.classList.remove("menu-open");
     });
-  });
-
-  showFloor(3);
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".floor-btn");
+    const floorBlocks = document.querySelectorAll(".floor");
+    const title = document.querySelector(".floor-title");
 
-let scale = 1;
-
-const MIN_SCALE = 0.8;
-const MAX_SCALE = 2.2;
-
-// видимый этаж
-function getVisibleFloorContent() {
-  const floors = document.querySelectorAll(".floor");
-  for (const floor of floors) {
-    if (floor.offsetParent !== null) {
-      return floor.querySelector(".floor-content");
+    function showFloor(number) {
+        floorBlocks.forEach(block => block.classList.add("hidden"));
+        const activeFloor = document.querySelector(`[data-floor-block="${number}"]`);
+        if (activeFloor) activeFloor.classList.remove("hidden");
+        const titles = { 1: "Первый этаж", 2: "Второй этаж", 3: "Третий этаж" };
+        title.textContent = titles[number] || "";
+        buttons.forEach(btn => btn.classList.remove("active"));
+        const activeBtn = document.querySelector(`.floor-btn[data-floor="${number}"]`);
+        if (activeBtn) activeBtn.classList.add("active");
     }
-  }
-  return null;
+
+    buttons.forEach(btn => btn.addEventListener("click", () => showFloor(btn.dataset.floor)));
+    showFloor(3);
+
+
+    initMobileInteractive();
+});
+function initMobileInteractive() {
+    const containers = document.querySelectorAll('.floor');
+    
+    containers.forEach(container => {
+        const content = container.querySelector('.floor-content');
+        if (!content) return;
+
+
+        let state = {
+            scale: 1,      
+            panning: false,  
+            pointX: 0,       
+            pointY: 0,       
+            startDist: 0,      
+            startX: 0,         
+            startY: 0          
+        };
+
+
+        const setTransform = () => {
+            content.style.transform = `translate(${state.startX}px, ${state.startY}px) scale(${state.scale})`;
+        };
+
+
+        container.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+
+                state.panning = true;
+
+                state.pointX = e.touches[0].clientX - state.startX;
+                state.pointY = e.touches[0].clientY - state.startY;
+            } else if (e.touches.length === 2) {
+
+                state.panning = false; 
+                state.startDist = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+            }
+        }, { passive: false });
+
+        container.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+
+            if (e.touches.length === 1 && state.panning) {
+                state.startX = e.touches[0].clientX - state.pointX;
+                state.startY = e.touches[0].clientY - state.pointY;
+                setTransform();
+
+            } else if (e.touches.length === 2) {
+
+                const dist = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+
+
+                if (state.startDist > 0) {
+                    const delta = dist / state.startDist;
+                    
+
+                    const newScale = state.scale * delta;
+                    
+
+                    state.startDist = dist;
+
+
+                    state.scale = Math.min(Math.max(0.5, newScale), 4);
+                    setTransform();
+                }
+            }
+        }, { passive: false });
+
+
+        container.addEventListener('touchend', (e) => {
+
+            if (e.touches.length === 0) {
+                state.panning = false;
+            } else if (e.touches.length === 1) {
+
+                state.pointX = e.touches[0].clientX - state.startX;
+                state.pointY = e.touches[0].clientY - state.startY;
+                state.panning = true;
+            }
+        });
+    });
 }
-
-
-function isMobileMapEnabled() {
-  return window.innerWidth <= 750;
-}
-
-document.addEventListener(
-  "wheel",
-  e => {
-    if (!isMobileMapEnabled()) return;
-
-    const content = getVisibleFloorContent();
-    if (!content || !content.contains(e.target)) return;
-
-    // запрещаем дефолт только когда реально зумим
-    if (!e.shiftKey) {
-      e.preventDefault();
-    }
-
-    // --- позиция курсора ---
-    const rect = content.getBoundingClientRect();
-    const offsetX = ((e.clientX - rect.left) / rect.width) * 100;
-    const offsetY = ((e.clientY - rect.top) / rect.height) * 100;
-
-    if (offsetX < 0 || offsetX > 100 || offsetY < 0 || offsetY > 100) return;
-
-    content.style.transformOrigin = `${offsetX}% ${offsetY}%`;
-
-    const step = 0.12;
-    if (e.deltaY < 0) {
-      scale = Math.min(MAX_SCALE, scale + step);
-    } else {
-      scale = Math.max(MIN_SCALE, scale - step);
-    }
-
-    content.style.transform = `scale(${scale})`;
-  },
-  { passive: false }
-);
-
-// ===== сброс при смене этажа =====
-document.querySelectorAll("[data-floor-button]").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    scale = 1;
-    const content = getVisibleFloorContent();
-    if (content) {
-      content.style.transform = "scale(1)";
-      content.style.transformOrigin = "center center";
-    }
-  });
-});
-
-window.addEventListener("resize", () => {
-  if (!isMobileMapEnabled()) {
-    scale = 1;
-    const content = getVisibleFloorContent();
-    if (content) {
-      content.style.transform = "scale(1)";
-      content.style.transformOrigin = "center center";
-    }
-  }
-});
