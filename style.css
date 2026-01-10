@@ -319,14 +319,6 @@ header {
   align-items: center;
 }
 
-.header_button_theme {
-  border: 1px solid var(--color-dark);
-  width: 40px;
-  height: 40px;
-  border-radius: var(--border-radius);
-  background-color: var(--color-light-gray);
-}
-
 /** стилизация бургер меню**/
 
 .burger-menu {
