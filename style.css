@@ -368,80 +368,6 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/*только бурер меню*/
-
-@media (max-width: 666px) {
-  header {
-    padding-inline: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
-  .burger-menu {
-    display: flex;
-    order: 3;
-  }
-
-  .header_menu-nav {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: var(--color-white);
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    z-index: 1000;
-    padding-top: 80px;
-  }
-
-  .header_menu-nav.active {
-    transform: translateX(0);
-  }
-
-  .header_menu-list {
-    flex-direction: column;
-    column-gap: 0;
-    row-gap: 0;
-    align-items: flex-end;
-  }
-
-  .header_menu-item {
-    width: 100%;
-    height: auto;
-    text-align: right;
-    padding: 20px;
-    border-bottom: 1px solid var(--color-light-gray);
-  }
-
-  .header_menu-item a {
-    display: block;
-    width: 100%;
-    padding: 15px 20px;
-    font-size: 18px;
-  }
-
-  .header_menu-end {
-    order: 2;
-  }
-
-  .header_menu-start {
-    order: 1;
-  }
-
-  body.menu-open {
-    overflow: hidden;
-  }
-
-  .header_menu-end {
-    margin-left: auto;
-    margin-right: 14px;
-  }
-
-  .header-content {
-    margin-top: 8px;
-  }
-}
 
 /*стилизация main*/
 
@@ -470,7 +396,7 @@ main {
   width: max-content;
   position: absolute;
   top: 45%;
-  left: 35%;
+  left: 25%;
   transform: translateX(-50%);
   width: clamp(150px, 40vw, 400px);
   z-index: 3;
@@ -507,71 +433,10 @@ main {
   z-index: 1;
 }
 
-@media (hover: hover) {
-  .floor-btn:hover {
-    background-color: #bed3f1;
-  }
-}
-
-@media (hover: none) {
-  a:active {
-    color: black;
-  }
-}
-
-/** адаптация main контента**/
-
-@media (max-width: 1024px) {
-  .floor-navigation {
-    left: 30%;
-  }
-}
-
-@media (max-width: 800px) {
-  .floor-navigation {
-    left: 25%;
-  }
-  .main-section {
-    margin: 15px 0 30px 0;
-  }
-  .floor-title {
-    margin-bottom: 20px;
-  }
-}
-
-@media (max-width: 500px) {
-  .floor-buttons {
-    flex-direction: row;
-    width: fit-content;
-  }
-  .floor-navigation {
-    display: flex;
-    width: max-content;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    z-index: 3;
-  }
-  .floor-title{
-    margin-top: 60px;
-  }
 
 
-}
 
-/**
 
-.search-menu input{
-  width: 70%;
-  height: 2.5rem;
-}
-
-.search-menu{
-  display: flex;
-  justify-content: center;
-}
-
-**/
 
 /* стилизация footer*/
 
@@ -607,18 +472,6 @@ footer {
   margin-top: 6px;
 }
 
-@media (hover: hover) {
-  .footer_text:hover {
-    color: #bed3f1;
-  }
-}
-
-@media (hover: none) {
-  .footer_text:active {
-    color: black;
-  }
-}
-
 .footer_end {
   margin-top: 18px;
   margin-bottom: 12px;
@@ -628,21 +481,14 @@ footer {
   padding-bottom: 12px;
 }
 
-/*адаптация footer*/
-
-@media (max-width: 666px) {
-  .footer_main-content {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    row-gap: 6px;
-  }
-  .footer_links-title h3 {
-    margin: 12px 0 3px 0;
-  }
-  
-}
 
 /*1, 2, 3 этаж*/
+
+.hos{
+  padding: 4px;
+}
+
+
 
 .horizontally_cabinet {
   height: clamp(2rem, 6vw, 3rem);
@@ -692,32 +538,24 @@ footer {
 }
 
 .exit img {
-  width: clamp(25px, 2vw, 50px);
-  height: clamp(25px, 2vw, 50px);
+  width: 50px;
+  height: 50px;
   object-fit: contain;
   display: block;
   margin: 0 auto;
 }
 
 .wc img {
-  width: clamp(30px, 4vw, 50px);
-  height: clamp(30px, 4vw, 50px);
+  width: 50px;
+  height: 50px;
   object-fit: contain;
   display: block;
   margin: 0 auto;
 }
 
-@media (hover: hover) {
-  .cabinet:hover {
-    background-color: #bed3f1;
-  }
-}
 
-@media (hover: none) {
-  .cabinet:active {
-    background-color: #dbeaff;
-  }
-}
+
+
 
 .Second_Floor-Container {
   display: flex;
@@ -777,7 +615,7 @@ footer {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(11, 1fr);
-  width: 800px;
+  width: 900px;
   min-height: 200px;
   padding: 10px;
   margin: 0 auto;
@@ -858,36 +696,7 @@ footer {
   border-top: 1px solid rgb(52, 85, 182);
 }
 
-@media (hover: hover) {
-  .cabinet:hover {
-    background-color: #bed3f1;
-  }
-  .dressing-room:hover {
-    background-color: #bed3f1;
-  }
-  .eat-room:hover {
-    background-color: #bed3f1;
-  }
 
-}
-
-@media (max-width: 750px) {
-    .First_Floor-Container, 
-    .Second_Floor-Container, 
-    .Third_Floor-Container {
-        overflow: hidden !important; 
-        touch-action: none; 
-        position: relative;
-        padding: 2px;
-    }
-
-    /* Контент, который мы будем трансформировать */
-    .floor-content {
-        transition: transform 0.1s ease-out;
-        transform-origin: 0 0; 
-        will-change: transform;
-    }
-}
 
 /* Верхний ряд */
 .Third_Floor-302 {
@@ -1417,6 +1226,236 @@ footer {
   background-color:  #dbeaff;
   border: 1px var(--color-dark-blue);
   border-radius: var(--border-radius);
+}
+
+
+
+@media (max-width: 666px) {
+  header {
+    padding-inline: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .burger-menu {
+    display: flex;
+    order: 3;
+  }
+
+  .header_menu-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-white);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    padding-top: 80px;
+  }
+
+  .header_menu-nav.active {
+    transform: translateX(0);
+  }
+
+  .header_menu-list {
+    flex-direction: column;
+    column-gap: 0;
+    row-gap: 0;
+    align-items: flex-end;
+  }
+
+  .header_menu-item {
+    width: 100%;
+    height: auto;
+    text-align: right;
+    padding: 20px;
+    border-bottom: 1px solid var(--color-light-gray);
+  }
+
+  .header_menu-item a {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 18px;
+  }
+
+  .header_menu-end {
+    order: 2;
+  }
+
+  .header_menu-start {
+    order: 1;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  .header_menu-end {
+    margin-left: auto;
+    margin-right: 14px;
+  }
+
+  .header-content {
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 750px) {
+  .exit img {
+  width: clamp(40px, 2vw, 50px);
+  height: clamp(40px, 2vw, 50px);
+  }
+
+  .wc img {
+    width: 40px;
+    height: 40px;
+}
+}
+
+
+@media (max-width: 560px) {
+  .exit img {
+  width: clamp(30px, 2vw, 50px);
+  height: clamp(30px, 2vw, 50px);
+  }
+
+  .wc img {
+    width: 30px;
+    height: 30px;
+}
+}
+
+@media (hover: hover) {
+  .cabinet:hover {
+    background-color: #bed3f1;
+  }
+}
+
+@media (hover: none) {
+  .cabinet:active {
+    background-color: #dbeaff;
+  }
+}
+
+
+@media (hover: hover) {
+  .floor-btn:hover {
+    background-color: #bed3f1;
+  }
+}
+
+@media (hover: none) {
+  a:active {
+    color: black;
+  }
+}
+
+/** адаптация main контента**/
+
+@media (max-width: 1024px) {
+  .floor-navigation {
+    left: 21%;
+  }
+}
+
+@media (max-width: 800px) {
+  .floor-navigation {
+    left: 25%;
+  }
+  .main-section {
+    margin: 15px 0 30px 0;
+  }
+  .floor-title {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 920px) {
+  .floor-buttons {
+    flex-direction: row;
+    width: fit-content;
+  }
+  .floor-navigation {
+    display: flex;
+    width: max-content;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 3;
+  }
+  .floor-title{
+    margin-top: 60px;
+  }
+
+
+}
+
+
+@media (hover: hover) {
+  .footer_text:hover {
+    color: #bed3f1;
+  }
+}
+
+@media (hover: none) {
+  .footer_text:active {
+    color: black;
+  }
+}
+
+@media (max-width: 600px) {
+  .First_Floor-Content {
+  width: 700px;
+  }
+}
+
+/*адаптация footer*/
+
+@media (max-width: 666px) {
+  .footer_main-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    row-gap: 6px;
+  }
+  .footer_links-title h3 {
+    margin: 12px 0 3px 0;
+  }
+  
+}
+
+
+@media (hover: hover) {
+  .cabinet:hover {
+    background-color: #bed3f1;
+  }
+  .dressing-room:hover {
+    background-color: #bed3f1;
+  }
+  .eat-room:hover {
+    background-color: #bed3f1;
+  }
+
+}
+
+@media (max-width: 750px) {
+    .First_Floor-Container, 
+    .Second_Floor-Container, 
+    .Third_Floor-Container {
+        overflow: hidden !important; 
+        touch-action: none; 
+        position: relative;
+        padding: 2px;
+    }
+
+    /* Контент, который мы будем трансформировать */
+    .floor-content {
+        transition: transform 0.1s ease-out;
+        transform-origin: 0 0; 
+        will-change: transform;
+    }
 }
 
 @media (hover: hover) {
